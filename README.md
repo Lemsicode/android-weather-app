@@ -1,5 +1,5 @@
 # Panahon
-Panahon is a weather application that utilizes geolocation and third-party API from _OpenWeatherMap.org_. My co-workers for this project is _Aki Escarraga_ and _Cyrl de Guzman_. This project is for the partial completion of the course Mobile Development in De La Salle University.
+Panahon is a weather application that utilizes geolocation and third-party API from _OpenWeatherMap.org_. My co-workers for this project are _Aki Escarraga_ and _Cyrl de Guzman_. This project is for the partial completion of the course Mobile Development in De La Salle University.
 
 ## Features
 * to be filled
