@@ -1,0 +1,2 @@
+rootProject.name = "Panahon"
+include ':app'
