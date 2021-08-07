@@ -18,19 +18,19 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView?.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_forecast -> {
+                R.id.nav_forecast -> {  //Forecast Fragment
                     loadFragment(ForecastFragment())
                     return@setOnItemSelectedListener true
                 }
-                R.id.nav_search -> {
+                R.id.nav_search -> {    //Search for other locations Fragment
                     loadFragment(SearchFragment())
                     return@setOnItemSelectedListener true
                 }
-                R.id.nav_settings -> {
+                R.id.nav_settings -> {  //Settings Fragment
                     loadFragment(SettingsFragment())
                     return@setOnItemSelectedListener true
                 }
-                else -> {
+                else -> {   //Default is Forecast Fragment
                     loadFragment(ForecastFragment())
                     return@setOnItemSelectedListener true
                 }
