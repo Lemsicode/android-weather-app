@@ -6,5 +6,23 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="bluish_grey">#90a4ae</color>
+    <color name="almost_black">#2f424242</color>
+    <color name="mustard">#ff6f00</color>
+    <color name="navy">#3c415e</color>
+
+    <!--SUNNY DAY PALETTE-->
+    <color name="sunny">#ff753d</color>
+    <color name="sunny_shadow">#ffba3d</color>
+    <color name="sunny_bg">#ffcaca</color>
+
+    <!--RAINY DAY PALETTE-->
+    <color name="rainy">#00daff</color>
+    <color name="rainy_bg">#0c60f2</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--CLOUDY DAY PALETTE-->
+    <color name="clouds">#ff99aa</color>
+    <color name="clouds_shadow">#7ac928</color>
+    <color name="cloudy_bg">#06805e</color>
 </resources>
