@@ -3,7 +3,7 @@ package ph.com.panahon
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_main.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import ph.com.panahon.fragments.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         loadFragment(ForecastFragment())    //Load the Forecast Fragment as Default Fragment
 
-        bottom_navigation.setOnItemSelectedListener {
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.nav_forecast -> {  //Forecast Fragment
                     loadFragment(ForecastFragment())

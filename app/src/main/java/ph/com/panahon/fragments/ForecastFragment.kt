@@ -48,7 +48,7 @@ class ForecastFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         weather = Weather(view)                     //creating an instance of Weather
-        weather.changeWeather(Weather.RAINY)       //Changing the UI Elements
+        weather.changeWeather(Weather.SUNNY)       //Changing the UI Elements
                                                     //Weather.CLOUDY, Weather.RAINY, Weather.SUNNY
         weather.changeLocation("JPN")       //Changing Locations
         weather.changeTemp(101, Weather.F)    //Changing the Temperature
