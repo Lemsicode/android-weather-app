@@ -2,13 +2,13 @@ package ph.com.panahon
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ph.com.panahon.fragments.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Communicator {
+
+    private val bundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +42,13 @@ class MainActivity : AppCompatActivity() {
      * This method loads the fragment being passed into the parameter.
      */
     private fun loadFragment(fragment : Fragment) {
+        fragment.arguments = bundle
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fl_fragment_holder, fragment)
         fragmentTransaction.commit()
+    }
+
+    override fun toggleCelsius(isCelsius: Boolean) {
+        bundle.putBoolean(Keys.UNIT_DEGREE_KEY.name, isCelsius)
     }
 }

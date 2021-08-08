@@ -9,4 +9,6 @@
     <string name="tv_temp_desc">Sunny</string>
     <string name="tv_date_temp">Jan. 01, 2021</string>
     <string name="tv_location_temp">MNL</string>
+    <string name="tv_settings_placeholder">Settings</string>
+    <string name="switch_celsius_fahrenheit">Fahrenheit/Celsius</string>
 </resources>
