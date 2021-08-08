@@ -3,7 +3,7 @@ package ph.com.panahon
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import ph.com.panahon.fragments.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,10 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         loadFragment(ForecastFragment())    //Load the Forecast Fragment as Default Fragment
 
-        // Find the BottomNavView, and add listeners for respective fragments
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNavigationView?.setOnItemSelectedListener {
-            when (it.itemId) {
+        bottom_navigation.setOnItemSelectedListener {
+            when(it.itemId) {
                 R.id.nav_forecast -> {  //Forecast Fragment
                     loadFragment(ForecastFragment())
                     return@setOnItemSelectedListener true

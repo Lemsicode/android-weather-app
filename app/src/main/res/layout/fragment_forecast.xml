@@ -1,17 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ForecastFragment"
-    android:background="@color/sunny">
+    tools:context=".fragments.ForecastFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/forecast_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Forecast Fragment"
-        android:textColor="@color/white"/>
+        android:background="@color/sunny_bg">
 
+        <ImageView
+            android:id="@+id/iv_weather"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/iv_weather"
+            android:src="@drawable/ic_sun"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="580dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <TextView
+            android:id="@+id/tv_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_light"
+            android:text="@string/tv_temperature_temp"
+            android:textSize="90sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left" />
+
+        <TextView
+            android:id="@+id/tv_temp_degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_light"
+            android:text="@string/tv_temp_degree_temp"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tv_temperature"
+            app:layout_constraintTop_toTopOf="@+id/tv_temperature" />
+
+        <TextView
+            android:id="@+id/tv_weather_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="-38dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:rotation="90"
+            android:text="@string/tv_temp_desc"
+            android:textSize="48sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="@string/tv_date_temp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-12dp"
+            android:fontFamily="@font/open_sans_light"
+            android:text="@string/tv_location_temp"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

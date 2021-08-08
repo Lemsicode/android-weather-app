@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="600dp"
+    android:height="600dp"
+    android:viewportWidth="600"
+    android:viewportHeight="600">
+    <path
+        android:fillColor="#7ac928"
+        android:name="Ellipse 2"
+        android:pathData="m176 138c58 0 105 47 105 105c0 58 -47 105 -105 105c-58 0 -105 -47 -105 -105c0 -58 47 -105 105 -105z" />
+    <path
+        android:fillColor="#7ac928"
+        android:name="Ellipse 2 copy"
+        android:pathData="m303.5 92c53.8 0 97.5 43.7 97.5 97.5c0 53.8 -43.7 97.5 -97.5 97.5c-53.8 0 -97.5 -43.7 -97.5 -97.5c0 -53.8 43.7 -97.5 97.5 -97.5z" />
+    <path
+        android:fillColor="#7ac928"
+        android:name="Ellipse 2 copy 4"
+        android:pathData="m460.5 190c53.8 0 97.5 43.7 97.5 97.5c0 53.8 -43.7 97.5 -97.5 97.5c-53.8 0 -97.5 -43.7 -97.5 -97.5c0 -53.8 43.7 -97.5 97.5 -97.5z" />
+    <path
+        android:fillColor="#7ac928"
+        android:name="Ellipse 2 copy 2"
+        android:pathData="m344.5 224c53.8 0 97.5 43.7 97.5 97.5c0 53.8 -43.7 97.5 -97.5 97.5c-53.8 0 -97.5 -43.7 -97.5 -97.5c0 -53.8 43.7 -97.5 97.5 -97.5z" />
+    <path
+        android:fillColor="#7ac928"
+        android:name="Ellipse 2 copy 3"
+        android:pathData="m480 322c59.1 0 107 47.9 107 107c0 59.1 -47.9 107 -107 107c-59.1 0 -107 -47.9 -107 -107c0 -59.1 47.9 -107 107 -107z" />
+    <path
+        android:fillColor="#ff99aa"
+        android:name="Ellipse 2"
+        android:pathData="m179 135c58 0 105 47 105 105c0 58 -47 105 -105 105c-58 0 -105 -47 -105 -105c0 -58 47 -105 105 -105z" />
+    <path
+        android:fillColor="#ff99aa"
+        android:name="Ellipse 2 copy"
+        android:pathData="m306.5 89c53.8 0 97.5 43.7 97.5 97.5c0 53.8 -43.7 97.5 -97.5 97.5c-53.8 0 -97.5 -43.7 -97.5 -97.5c0 -53.8 43.7 -97.5 97.5 -97.5z" />
+    <path
+        android:fillColor="#ff99aa"
+        android:name="Ellipse 2 copy 4"
+        android:pathData="m463.5 187c53.8 0 97.5 43.7 97.5 97.5c0 53.8 -43.7 97.5 -97.5 97.5c-53.8 0 -97.5 -43.7 -97.5 -97.5c0 -53.8 43.7 -97.5 97.5 -97.5z" />
+    <path
+        android:fillColor="#ff99aa"
+        android:name="Ellipse 2 copy 2"
+        android:pathData="m347.5 221c53.8 0 97.5 43.7 97.5 97.5c0 53.8 -43.7 97.5 -97.5 97.5c-53.8 0 -97.5 -43.7 -97.5 -97.5c0 -53.8 43.7 -97.5 97.5 -97.5z" />
+    <path
+        android:fillColor="#ff99aa"
+        android:name="Ellipse 2 copy 3"
+        android:pathData="m483 319c59.1 0 107 47.9 107 107c0 59.1 -47.9 107 -107 107c-59.1 0 -107 -47.9 -107 -107c0 -59.1 47.9 -107 107 -107z" />
+</vector>
