@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.annotation.RequiresApi
 import ph.com.panahon.Date
 import ph.com.panahon.R
@@ -48,11 +49,14 @@ class ForecastFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         weather = Weather(view)                     //creating an instance of Weather
-        weather.changeWeather(Weather.SUNNY)       //Changing the UI Elements
-                                                    //Weather.CLOUDY, Weather.RAINY, Weather.SUNNY
+
+        weather.changeWeather(Weather.CLOUDY)       //Changing the UI Elements
+                                                    //Weather.CLOUDY, Weather.RAINY, Weather.SUNNY, Weather.SNOWY, Weather.STORMY
+
         weather.changeLocation("JPN")       //Changing Locations
         weather.changeTemp(101, Weather.F)    //Changing the Temperature
-        weather.changeDate(Date(6, 2, 3000))    //Changing the Date (MM-DD-YYYY)
+        weather.changeDate(Date(8, 9, 2021))    //Changing the Date (MM-DD-YYYY)
+
         weather.changeDegree(Weather.C)             //Converting the View from F to C and vice versa
                                                     //Indicated by Weather.C or Weather.F
     }

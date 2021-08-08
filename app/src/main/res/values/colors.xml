@@ -25,4 +25,12 @@
     <color name="clouds">#ff99aa</color>
     <color name="clouds_shadow">#7ac928</color>
     <color name="cloudy_bg">#06805e</color>
+
+    <!--SNOWY DAY PALETTE-->
+    <color name="snow">#9ba9d0</color>
+    <color name="snow_bg">#f6f5fa</color>
+
+    <!--STORMY DAY PALETTE-->
+    <color name="storms">#FFC107</color>
+    <color name="storms_bg">#2D0C4C</color>
 </resources>

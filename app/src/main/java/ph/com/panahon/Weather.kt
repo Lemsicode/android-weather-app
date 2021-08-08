@@ -1,4 +1,5 @@
 package ph.com.panahon
+
 import android.annotation.SuppressLint
 import android.os.Build
 import android.view.View
@@ -6,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+
 
 open class Weather(view: View) {
 
@@ -152,21 +154,28 @@ open class Weather(view: View) {
         changeFontColor(WHITE)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SetTextI18n")
     private fun snowyWeather() {
+        ivWeather.setImageResource(R.drawable.ic_snow)
         tvWeatherDescription.text = "Snowy"
-        TODO("To be implemented")
+        bg.setBackgroundColor(theView.resources.getColor(R.color.snow_bg, theView.context.theme))
+        changeFontColor(DARK)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SetTextI18n")
     private fun stormyWeather() {
+        ivWeather.setImageResource(R.drawable.ic_stormy)
         tvWeatherDescription.text = "Stormy"
-        TODO("To be implemented")
+        bg.setBackgroundColor(theView.resources.getColor(R.color.storms_bg, theView.context.theme))
+        changeFontColor(WHITE)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SetTextI18n")
     private fun unknownWeather() {
+        ivWeather.setImageResource(android.R.color.transparent)
         tvWeatherDescription.text = "Unknown"
         tvLocation.text = "IDK"
         tvDate.text = "The End of Time"
