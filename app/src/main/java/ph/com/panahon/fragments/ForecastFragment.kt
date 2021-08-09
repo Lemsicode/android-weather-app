@@ -20,7 +20,7 @@ class ForecastFragment : Fragment() {
     private var degreeUnitCode: Int = 0 //Initialize only to 0, 0 has no significance value.
     private lateinit var weather: Weather
     private lateinit var communicator: Communicator
-    private lateinit var forecasts : ArrayList<Forecast>
+    private var forecasts : ArrayList<Forecast> = ArrayList()
 
     // PLACEHOLDERS FOR API DATA
     private lateinit var location: String
@@ -77,7 +77,6 @@ class ForecastFragment : Fragment() {
         precipitation = 22
 
         // Store data for forecasts (sample only)
-        forecasts = ArrayList()
         forecasts.add(Forecast("Monday", Weather.RAINY, 24, 30, 34))
         forecasts.add(Forecast("Tuesday", Weather.SUNNY, 30, 30, 34))
         forecasts.add(Forecast("Wednesday", Weather.CLOUDY, 28, 30, 34))
