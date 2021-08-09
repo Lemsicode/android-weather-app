@@ -48,7 +48,8 @@ class MainActivity : AppCompatActivity(), Communicator {
         fragmentTransaction.commit()
     }
 
-    override fun toggleCelsius(isCelsius: Boolean) {
-        bundle.putBoolean(Keys.UNIT_DEGREE_KEY.name, isCelsius)
+    override fun storeUnitDegreePreference(unitDegreeCode: Int) {
+        bundle.clear()
+        bundle.putInt(Keys.UNIT_DEGREE_KEY.name, unitDegreeCode)
     }
 }

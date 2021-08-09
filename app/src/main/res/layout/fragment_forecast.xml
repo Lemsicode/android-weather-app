@@ -52,6 +52,7 @@
             android:id="@+id/tv_temp_degree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/open_sans_light"
             android:text="@string/tv_temp_degree_temp"
             android:textSize="48sp"
@@ -95,6 +96,17 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
             app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
+        <TextView
+            android:id="@+id/tv_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginBottom="19dp"
+            android:text="@string/tv_humidity_temp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

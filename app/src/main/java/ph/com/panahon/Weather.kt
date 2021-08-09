@@ -19,6 +19,7 @@ open class Weather(view: View) {
     private var tvDate : TextView = view.findViewById(R.id.tv_date)
     private var tvWeatherDescription : TextView = view.findViewById(R.id.tv_weather_desc)
     private var tvDegree : TextView = view.findViewById(R.id.tv_temp_degree)
+    private var tvHumidity : TextView = view.findViewById(R.id.tv_humidity)
 
     private var fahrenheit : Int = 0
     private var celsius : Int = 0
@@ -42,8 +43,8 @@ open class Weather(view: View) {
      * @weather the integer that corresponds to the weather, all integers are given by the constants given by the class.
      */
     @RequiresApi(Build.VERSION_CODES.M)
-    open fun changeWeather(weather: Int) {
-        when (weather) {
+    open fun setWeather(weatherCode: Int) {
+        when (weatherCode) {
             SUNNY -> {
                 sunnyWeather()
             }
@@ -70,8 +71,8 @@ open class Weather(view: View) {
      * @temp the temperature provided
      * @degree an Integer that corresponds to the choice, choices are built in in the class.
      */
-    open fun changeTemp(temp: Int, degree: Int) {
-        when (degree) {
+    open fun setTemperature(temp: Int, degreeUnitCode: Int) {
+        when (degreeUnitCode) {
             F -> {
                 fahrenheit = temp
                 celsius = (fahrenheit - 32) * 5/9
@@ -93,7 +94,7 @@ open class Weather(view: View) {
      * Changes the location in the UI
      * @location the location provided which is a String
      */
-    open fun changeLocation(location: String) {
+    open fun setLocation(location: String) {
         tvLocation.text = location
     }
 
@@ -101,17 +102,17 @@ open class Weather(view: View) {
      * Changes the Date in the UI
      * @date a Java Date Object that is provided.
      */
-    open fun changeDate(date: Date) {
+    open fun setDate(date: Date) {
         val actualDate = date.getDate()
         tvDate.text = actualDate
     }
 
     /**
-     * Changes the Degree to either Fahrenheit or Celsius
+     * Changes the Unit Degree to either Fahrenheit or Celsius
      * @degree an Integer that corresponds to the choice, choices are built in in the class.
      */
-    open fun changeDegree(degree: Int) {
-        when (degree) {
+    open fun setUnitDegree(degreeUnitCode: Int) {
+        when (degreeUnitCode) {
             F -> {
                 tvTemperature.text = fahrenheit.toString()
                 tvDegree.text = "°F"
@@ -125,6 +126,11 @@ open class Weather(view: View) {
                 tvDegree.text = "°C"
             }
         }
+    }
+
+    open fun setHumidityPercentage(percentage: Int) {
+        val humidity = "oh btw humidity is $percentage%"
+        tvHumidity.text = humidity
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -193,6 +199,7 @@ open class Weather(view: View) {
                 tvDate.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
                 tvWeatherDescription.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
                 tvDegree.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
+                tvHumidity.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
             }
             DARK -> {
                 tvTemperature.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
@@ -200,6 +207,7 @@ open class Weather(view: View) {
                 tvDate.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
                 tvWeatherDescription.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
                 tvDegree.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
+                tvHumidity.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
             }
         }
     }

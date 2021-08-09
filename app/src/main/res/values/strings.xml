@@ -11,4 +11,5 @@
     <string name="tv_location_temp">MNL</string>
     <string name="tv_settings_placeholder">Settings</string>
     <string name="switch_celsius_fahrenheit">Fahrenheit/Celsius</string>
+    <string name="tv_humidity_temp">oh btw humidity is 77%</string>
 </resources>
