@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import java.time.LocalDate
+import java.util.*
 
 
 open class Weather(view: View) {
@@ -16,10 +18,14 @@ open class Weather(view: View) {
     private var ivWeather : ImageView = view.findViewById(R.id.iv_weather)
     private var tvTemperature : TextView = view.findViewById(R.id.tv_temperature)
     private var tvLocation : TextView = view.findViewById(R.id.tv_location)
-    private var tvDate : TextView = view.findViewById(R.id.tv_date)
     private var tvWeatherDescription : TextView = view.findViewById(R.id.tv_weather_desc)
     private var tvDegree : TextView = view.findViewById(R.id.tv_temp_degree)
     private var tvHumidity : TextView = view.findViewById(R.id.tv_humidity)
+    private var tvTodayTitle : TextView = view.findViewById(R.id.tv_today)
+    private var tvPrecipitation : TextView = view.findViewById(R.id.tv_precipitation)
+
+    private var location : String = "Manila"
+    private var day : String = "Monday"
 
     private var fahrenheit : Int = 0
     private var celsius : Int = 0
@@ -40,7 +46,7 @@ open class Weather(view: View) {
 
     /**
      * The Method that changes the UI to the right weather
-     * @weather the integer that corresponds to the weather, all integers are given by the constants given by the class.
+     * @param weather the integer that corresponds to the weather, all integers are given by the constants given by the class.
      */
     @RequiresApi(Build.VERSION_CODES.M)
     open fun setWeather(weatherCode: Int) {
@@ -68,8 +74,8 @@ open class Weather(view: View) {
 
     /**
      * Changes the temperature in the UI
-     * @temp the temperature provided
-     * @degree an Integer that corresponds to the choice, choices are built in in the class.
+     * @param temp the temperature provided
+     * @param degreeUnitCode an Integer that corresponds to the choice, choices are built in in the class.
      */
     open fun setTemperature(temp: Int, degreeUnitCode: Int) {
         when (degreeUnitCode) {
@@ -92,24 +98,26 @@ open class Weather(view: View) {
 
     /**
      * Changes the location in the UI
-     * @location the location provided which is a String
+     * @param location the location provided which is a String
      */
     open fun setLocation(location: String) {
-        tvLocation.text = location
+        this.location = location
     }
 
     /**
      * Changes the Date in the UI
-     * @date a Java Date Object that is provided.
+     * @param localDate a Java Date Object that is provided.
      */
-    open fun setDate(date: Date) {
-        val actualDate = date.getDate()
-        tvDate.text = actualDate
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    open fun setDate(localDate: LocalDate) {
+        this.day = localDate.dayOfWeek.name.lowercase()
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
     }
 
     /**
      * Changes the Unit Degree to either Fahrenheit or Celsius
-     * @degree an Integer that corresponds to the choice, choices are built in in the class.
+     * @param degreeUnitCode an Integer that corresponds to the choice, choices are built in in the class.
      */
     open fun setUnitDegree(degreeUnitCode: Int) {
         when (degreeUnitCode) {
@@ -128,9 +136,24 @@ open class Weather(view: View) {
         }
     }
 
+    /**
+     * Sets the Humidity. doesn't need a percentage sign.
+     *
+     * @param percentage the percentage input
+     */
     open fun setHumidityPercentage(percentage: Int) {
-        val humidity = "oh btw humidity is $percentage%"
+        val humidity = ": $percentage%"
         tvHumidity.text = humidity
+    }
+
+    /**
+     * Sets the Precipitation. doesn't need a percentage sign.
+     *
+     * @param percentage the percentage input
+     */
+    open fun setPrecipitationPercentage(percentage: Int) {
+        val precipitation = ": $percentage%"
+        tvPrecipitation.text = precipitation
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -184,7 +207,6 @@ open class Weather(view: View) {
         ivWeather.setImageResource(android.R.color.transparent)
         tvWeatherDescription.text = "Unknown"
         tvLocation.text = "IDK"
-        tvDate.text = "The End of Time"
         tvTemperature.text = ":("
         tvDegree.text = ""
         bg.setBackgroundColor(theView.resources.getColor(R.color.teal_700, theView.context.theme))
@@ -196,18 +218,20 @@ open class Weather(view: View) {
             WHITE -> {
                 tvTemperature.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
                 tvLocation.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
-                tvDate.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
                 tvWeatherDescription.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
                 tvDegree.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
                 tvHumidity.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
+                tvTodayTitle.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
+                tvPrecipitation.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
             }
             DARK -> {
                 tvTemperature.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
                 tvLocation.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
-                tvDate.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
                 tvWeatherDescription.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
                 tvDegree.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
-                tvHumidity.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
+                tvHumidity.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
+                tvTodayTitle.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
+                tvPrecipitation.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
             }
         }
     }

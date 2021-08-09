@@ -2,13 +2,17 @@ package ph.com.panahon.fragments
 
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ph.com.panahon.*
+import java.time.LocalDate
 
 
 class ForecastFragment : Fragment() {
@@ -16,6 +20,14 @@ class ForecastFragment : Fragment() {
     private var degreeUnitCode: Int = 0 //Initialize only to 0, 0 has no significance value.
     private lateinit var weather: Weather
     private lateinit var communicator: Communicator
+    private lateinit var forecasts : ArrayList<Forecast>
+
+    // PLACEHOLDERS FOR API DATA
+    private lateinit var location: String
+    private var temperature: Int = 0
+    private var weatherCode: Int = 0
+    private var humidity: Int = 0
+    private var precipitation: Int = 0
 
     /**
      * During onPause, the Communicator retrieves the current settings in the forecast fragment;
@@ -42,44 +54,52 @@ class ForecastFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_forecast, container, false)
 
         // Call third-party API for weather
-        this.callAPI(view)
+        this.callAPI()
+
+        // Initialize the Weather for today
+        this.initializeWeatherToday(view)
+
+        // Initialize the Forecasts for the following days (RecyclerView)
+        this.initializeForecasts(view)
 
         return view
     }
 
-    /**
-     * The Function that calls the API to retrieve necessary data to be reflected in the UI Elements
-     *
-     * Weather Class Methods:
-     * setWeather(weatherCode : Int) - weatherCodes: Weather.CLOUDY, Weather.RAINY, Weather.SUNNY, etc.
-     * setLocation(location : String)
-     * setTemperature(temp : Int, degreeUnitCode : Int) - degreeUnitCodes: Weather.F and Weather.C
-     * setDate(date : Date) where date is Date(month : Int, day : Int, year, Int)
-     * setDegreeUnit(degreeUnitCode : Int) - degreeUnitCodes: Weather.F and Weather.C
-     * setHumidityPercentage(percentage : Int) - no need to add %, just the integer
-     *
-     * @weather the Weather Class passed by onCreateView
-     */
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun callAPI(view: View) {
-
-        // Create a Weather Class
-        weather = Weather(view)
-
+    private fun callAPI() {
         // Call the third-party API then describe the data by manipulating the Weather Class.
         // --> happens here <--
 
-        // Edit the Weather Class
-        weather.setDate(Date(8, 9, 2021))
-        weather.setLocation("MNL")
-        weather.setWeather(Weather.STORMY)
-        weather.setTemperature(32, Weather.C)
-        weather.setHumidityPercentage(77)
+        // Store the data for today's weather (sample only)
+        location = "Binan City"
+        weatherCode = Weather.RAINY
+        temperature = 32
+        humidity = 30
+        precipitation = 22
+
+        // Store data for forecasts (sample only)
+        forecasts = ArrayList()
+        forecasts.add(Forecast("Monday", Weather.RAINY, 24, 30, 34))
+        forecasts.add(Forecast("Tuesday", Weather.SUNNY, 30, 30, 34))
+        forecasts.add(Forecast("Wednesday", Weather.CLOUDY, 28, 30, 34))
+        forecasts.add(Forecast("Thursday", Weather.SUNNY, 31, 30, 34))
+        forecasts.add(Forecast("Friday", Weather.SUNNY, 32, 30, 34))
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun initializeWeatherToday(view: View) {
+
+        weather = Weather(view)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            weather.setDate(LocalDate.now())
+        }
+        weather.setLocation(location)
+        weather.setWeather(weatherCode)
+        weather.setTemperature(temperature, Weather.C)
+        weather.setHumidityPercentage(humidity)
+        weather.setPrecipitationPercentage(precipitation)
         weather.setUnitDegree(degreeUnitCode)
-
-        // Don't mind this, just a feature that when you click the Temperature it changes unit degree for preference.
         view.findViewById<TextView>(R.id.tv_temperature).setOnClickListener {
-
             degreeUnitCode = if (degreeUnitCode == Weather.C) {
                 weather.setUnitDegree(Weather.F)
                 Weather.F
@@ -88,5 +108,20 @@ class ForecastFragment : Fragment() {
                 Weather.C
             }
         }
+    }
+
+    private fun initializeForecasts(view: View) {
+        val rvForecasts : RecyclerView = view.findViewById(R.id.rv_forecast)!!
+        val manager: RecyclerView.LayoutManager =
+            LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+
+        rvForecasts.layoutManager = manager
+        rvForecasts.adapter = ForecastAdapter(forecasts)
+
+        val dividerItemDecoration = DividerItemDecoration(
+            rvForecasts.context,
+            LinearLayoutManager.HORIZONTAL
+        )
+        rvForecasts.addItemDecoration(dividerItemDecoration)
     }
 }
