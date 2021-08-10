@@ -20,7 +20,7 @@ class ForecastAdapter(private var forecasts: ArrayList<Forecast>) : RecyclerView
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {
         holder.setWeather(forecasts[position].weather)
         holder.tvDay.text = forecasts[position].day
-        holder.tvTemp.text = forecasts[position].temperature.toString()
+        holder.setTemperature(forecasts[position].temperature, Weather.C)
     }
 
     override fun getItemCount(): Int {

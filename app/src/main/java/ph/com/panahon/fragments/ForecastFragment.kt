@@ -28,6 +28,7 @@ class ForecastFragment : Fragment() {
     private var weatherCode: Int = 0
     private var humidity: Int = 0
     private var precipitation: Int = 0
+    private lateinit var rvForecasts : RecyclerView
 
     /**
      * During onPause, the Communicator retrieves the current settings in the forecast fragment;
@@ -62,6 +63,9 @@ class ForecastFragment : Fragment() {
         // Initialize the Forecasts for the following days (RecyclerView)
         this.initializeForecasts(view)
 
+        // Last Tweaks
+
+        // Return View
         return view
     }
 
@@ -110,17 +114,11 @@ class ForecastFragment : Fragment() {
     }
 
     private fun initializeForecasts(view: View) {
-        val rvForecasts : RecyclerView = view.findViewById(R.id.rv_forecast)!!
+        rvForecasts = view.findViewById(R.id.rv_forecast)!!
         val manager: RecyclerView.LayoutManager =
             LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
 
         rvForecasts.layoutManager = manager
         rvForecasts.adapter = ForecastAdapter(forecasts)
-
-        val dividerItemDecoration = DividerItemDecoration(
-            rvForecasts.context,
-            LinearLayoutManager.HORIZONTAL
-        )
-        rvForecasts.addItemDecoration(dividerItemDecoration)
     }
 }
