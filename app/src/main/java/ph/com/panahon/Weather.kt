@@ -15,7 +15,11 @@ open class Weather(view: View) {
 
     private var theView = view
     private var bg : ConstraintLayout = view.findViewById(R.id.forecast_screen)
+
     private var ivWeather : ImageView = view.findViewById(R.id.iv_weather)
+    private var ivPrecipitationLogo : ImageView = view.findViewById(R.id.iv_chances_rain)
+    private var ivHumidityLogo : ImageView = view.findViewById(R.id.iv_humidity)
+
     private var tvTemperature : TextView = view.findViewById(R.id.tv_temperature)
     private var tvLocation : TextView = view.findViewById(R.id.tv_location)
     private var tvWeatherDescription : TextView = view.findViewById(R.id.tv_weather_desc)
@@ -29,6 +33,7 @@ open class Weather(view: View) {
 
     private var fahrenheit : Int = 0
     private var celsius : Int = 0
+    private var weatherCode : Int = SUNNY
 
     companion object {
         const val SUNNY = 1
@@ -46,10 +51,11 @@ open class Weather(view: View) {
 
     /**
      * The Method that changes the UI to the right weather
-     * @param weather the integer that corresponds to the weather, all integers are given by the constants given by the class.
+     * @param weatherCode the integer that corresponds to the weather, all integers are given by the constants given by the class.
      */
     @RequiresApi(Build.VERSION_CODES.M)
     open fun setWeather(weatherCode: Int) {
+        this.weatherCode = weatherCode
         when (weatherCode) {
             SUNNY -> {
                 sunnyWeather()
@@ -78,7 +84,8 @@ open class Weather(view: View) {
      * @param degreeUnitCode an Integer that corresponds to the choice, choices are built in in the class.
      */
     open fun setTemperature(temp: Int, degreeUnitCode: Int) {
-        when (degreeUnitCode) {
+        if(validWeatherCode()) {
+            when (degreeUnitCode) {
             F -> {
                 fahrenheit = temp
                 celsius = (fahrenheit - 32) * 5/9
@@ -94,6 +101,7 @@ open class Weather(view: View) {
                 tvDegree.text = "°C"
             }
         }
+        }
     }
 
     /**
@@ -101,7 +109,9 @@ open class Weather(view: View) {
      * @param location the location provided which is a String
      */
     open fun setLocation(location: String) {
-        this.location = location
+        if(validWeatherCode()) {
+            this.location = location
+        }
     }
 
     /**
@@ -111,8 +121,10 @@ open class Weather(view: View) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     open fun setDate(localDate: LocalDate) {
-        this.day = localDate.dayOfWeek.name.lowercase()
-            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+        if(validWeatherCode()) {
+            this.day = localDate.dayOfWeek.name.lowercase()
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+        }
     }
 
     /**
@@ -120,18 +132,20 @@ open class Weather(view: View) {
      * @param degreeUnitCode an Integer that corresponds to the choice, choices are built in in the class.
      */
     open fun setUnitDegree(degreeUnitCode: Int) {
-        when (degreeUnitCode) {
-            F -> {
-                tvTemperature.text = fahrenheit.toString()
-                tvDegree.text = "°F"
-            }
-            C -> {
-                tvTemperature.text = celsius.toString()
-                tvDegree.text = "°C"
-            }
-            else -> {
-                tvTemperature.text = celsius.toString()
-                tvDegree.text = "°C"
+        if(validWeatherCode()) {
+            when (degreeUnitCode) {
+                F -> {
+                    tvTemperature.text = fahrenheit.toString()
+                    tvDegree.text = "°F"
+                }
+                C -> {
+                    tvTemperature.text = celsius.toString()
+                    tvDegree.text = "°C"
+                }
+                else -> {
+                    tvTemperature.text = celsius.toString()
+                    tvDegree.text = "°C"
+                }
             }
         }
     }
@@ -142,8 +156,10 @@ open class Weather(view: View) {
      * @param percentage the percentage input
      */
     open fun setHumidityPercentage(percentage: Int) {
-        val humidity = ": $percentage%"
-        tvHumidity.text = humidity
+        if(validWeatherCode()) {
+            val humidity = ": $percentage%"
+            tvHumidity.text = humidity
+        }
     }
 
     /**
@@ -152,8 +168,14 @@ open class Weather(view: View) {
      * @param percentage the percentage input
      */
     open fun setPrecipitationPercentage(percentage: Int) {
-        val precipitation = ": $percentage%"
-        tvPrecipitation.text = precipitation
+        if(validWeatherCode()) {
+            val precipitation = ": $percentage%"
+            tvPrecipitation.text = precipitation
+        }
+    }
+
+    private fun validWeatherCode() : Boolean  {
+        return weatherCode in 1..5
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -206,9 +228,11 @@ open class Weather(view: View) {
     private fun unknownWeather() {
         ivWeather.setImageResource(android.R.color.transparent)
         tvWeatherDescription.text = "Unknown"
-        tvLocation.text = "IDK"
+        tvLocation.text = ""
         tvTemperature.text = ":("
         tvDegree.text = ""
+        tvHumidity.text = ":IDK"
+        tvPrecipitation.text = ":IDK"
         bg.setBackgroundColor(theView.resources.getColor(R.color.teal_700, theView.context.theme))
     }
 
@@ -223,6 +247,8 @@ open class Weather(view: View) {
                 tvHumidity.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
                 tvTodayTitle.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
                 tvPrecipitation.setTextColor(theView.resources.getColor(R.color.white, theView.context.theme))
+                ivPrecipitationLogo.setImageResource(R.drawable.ic_precip_white)
+                ivHumidityLogo.setImageResource(R.drawable.ic_humidity_white)
             }
             DARK -> {
                 tvTemperature.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
@@ -232,6 +258,8 @@ open class Weather(view: View) {
                 tvHumidity.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
                 tvTodayTitle.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
                 tvPrecipitation.setTextColor(theView.resources.getColor(R.color.black, theView.context.theme))
+                ivPrecipitationLogo.setImageResource(R.drawable.ic_precip_black)
+                ivHumidityLogo.setImageResource(R.drawable.ic_humidity_black)
             }
         }
     }

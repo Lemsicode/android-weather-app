@@ -75,7 +75,7 @@ class ForecastFragment : Fragment() {
 
         // Store the data for today's weather (sample only)
         location = "Binan City"
-        weatherCode = Weather.RAINY
+        weatherCode = Weather.SUNNY
         temperature = 32
         humidity = 30
         precipitation = 22

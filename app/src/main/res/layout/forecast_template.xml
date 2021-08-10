@@ -17,6 +17,7 @@
             android:id="@+id/iv_template_weather"
             android:layout_width="0dp"
             android:layout_height="100dp"
+            android:layout_marginStart="3dp"
             android:contentDescription="@string/iv_weather"
             app:layout_constraintEnd_toStartOf="@+id/guideline_template_right"
             app:layout_constraintStart_toStartOf="@+id/guideline_template_left"
