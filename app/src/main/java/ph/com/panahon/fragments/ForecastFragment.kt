@@ -63,29 +63,32 @@ class ForecastFragment : Fragment() {
         // Initialize the Forecasts for the following days (RecyclerView)
         this.initializeForecasts(view)
 
-        // Last Tweaks
-
         // Return View
         return view
     }
 
     private fun callAPI() {
-        // Call the third-party API then describe the data by manipulating the Weather Class.
+        // Call the third-party API
         // --> happens here <--
+
+
+
+
+
 
         // Store the data for today's weather (sample only)
         location = "Binan City"
-        weatherCode = Weather.SUNNY
-        temperature = 32
-        humidity = 30
-        precipitation = 22
+        weatherCode = Weather.RAINY
+        temperature = 28
+        humidity = 50
+        precipitation = 78
 
         // Store data for forecasts (sample only)
-        forecasts.add(Forecast("Monday", Weather.RAINY, 24, 30, 34))
-        forecasts.add(Forecast("Tuesday", Weather.SUNNY, 30, 30, 34))
-        forecasts.add(Forecast("Wednesday", Weather.CLOUDY, 28, 30, 34))
-        forecasts.add(Forecast("Thursday", Weather.SUNNY, 31, 30, 34))
-        forecasts.add(Forecast("Friday", Weather.SUNNY, 32, 30, 34))
+        forecasts.add(Forecast("Wednesday", Weather.SUNNY, 35, 30, 19))
+        forecasts.add(Forecast("Thursday", Weather.CLOUDY, 29, 30, 14))
+        forecasts.add(Forecast("Friday", Weather.SNOWY, 13, 30, 3))
+        forecasts.add(Forecast("Saturday", Weather.RAINY, 27, 30, 77))
+        forecasts.add(Forecast("Sunday", Weather.STORMY, 26, 30, 77))
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
