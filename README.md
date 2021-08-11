@@ -10,7 +10,7 @@ The android application allows the user to do the following:
 * Search a certain place for its weather.
 
 ## Running the files in Android Studio
-1. Either download the files through ZIP or Clone this using cmd by typing:<br />`git clone git@github.com:Lemsicode/android-fakestagram.git`
+1. Either download the files through ZIP or Clone this using cmd by typing:<br />`git clone git@github.com:Lemsicode/android-weather-app.git`
 2. Make sure the file `local.properties` is present and automatically made by Android Studio.
 3. If `local.properties` is missing, rebuild the app inside Android Studio.
 4. Press the Run Button inside the app. 
