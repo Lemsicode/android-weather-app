@@ -16,14 +16,14 @@ open class ForecastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     private var tvTemp: TextView = itemView.findViewById(R.id.tv_template_temp)
     private var tvUnitDegree: TextView = itemView.findViewById(R.id.tv_template_unit_degree)
     var bg: LinearLayout = itemView.findViewById(R.id.ll_template)
-    var tvDay: TextView = itemView.findViewById(R.id.tv_template_day)
+    private var tvDay: TextView = itemView.findViewById(R.id.tv_template_day)
 
     lateinit var today: String
     lateinit var location: String
     var weatherCode: Int = 0
     var celsius: Int = 0
     var fahrenheit: Int = 0
-    var degreeUnit: Int = 0
+    private var degreeUnit: Int = 0
     var humidityPercentage: Int = 0
     var precipitationPercentage: Int = 0
 

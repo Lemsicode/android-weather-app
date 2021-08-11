@@ -54,12 +54,15 @@ class ForecastFragment : Fragment() {
         this.initializeForecasts(view)
 
         // Initialize the Weather for today
-        this.initializeWeatherToday(view)
+        this.initializeWeatherToday()
 
         // Return View
         return view
     }
 
+    /**
+     * The most important function in the program.
+     */
     private fun callAPI() {
         // Call the third-party API
         // --> happens here <--
@@ -67,11 +70,14 @@ class ForecastFragment : Fragment() {
 
 
 
+
+
         // Declare the location
         val location = "Metro Manila"
 
-        // The first element in the ArrayList is the forecast for "Today"
         // FORMAT: addForecast( day, location, weatherCode, temperature, unitDegree, humidity, precipitation)
+
+        // The first element in the ArrayList is the forecast for "Today"
         addForecast("Wednesday", location, Weather.SUNNY, 35, Weather.C, 30, 19)
 
         // The rest of the elements are the forecasts for the following days
@@ -82,13 +88,13 @@ class ForecastFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun initializeWeatherToday(view: View) {
+    private fun initializeWeatherToday() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             weather.setDate(LocalDate.now())
         }
         weather.setLocation(forecasts[0].location)
         weather.setWeather(forecasts[0].weather)
-        weather.setTemperature(forecasts[0].temperature, Weather.C)
+        weather.setTemperature(forecasts[0].celsius, Weather.C)
         weather.setHumidityPercentage(forecasts[0].humidity)
         weather.setPrecipitationPercentage(forecasts[0].precipitation)
         weather.setUnitDegree(degreeUnitCode)
@@ -105,6 +111,19 @@ class ForecastFragment : Fragment() {
     }
 
     private fun addForecast(day: String, location: String, weatherCode: Int, temperature: Int, unitDegree: Int, humidityPercentage: Int, precipitationPercentage: Int){
-        forecasts.add(Forecast(day, location, weatherCode, temperature, unitDegree, humidityPercentage, precipitationPercentage))
+
+        val celsius: Int
+        val fahrenheit: Int
+
+        if(unitDegree == Weather.C) {
+            celsius = temperature
+            fahrenheit = (celsius * 9/5) + 32
+        }
+        else {
+            fahrenheit = temperature
+            celsius = (fahrenheit - 32) * 5/9
+        }
+
+        forecasts.add(Forecast(day, location, weatherCode, celsius, fahrenheit, humidityPercentage, precipitationPercentage))
     }
 }

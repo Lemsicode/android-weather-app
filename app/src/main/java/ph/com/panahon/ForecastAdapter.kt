@@ -26,7 +26,12 @@ class ForecastAdapter(private var forecasts: ArrayList<Forecast>, private var we
         holder.setDay(forecasts[position].day)
         holder.location = forecasts[position].location
         holder.setWeather(forecasts[position].weather)
-        holder.setTemperature(forecasts[position].temperature, forecasts[position].unitDegree)
+
+        if(weather.degreeUnitCode == Weather.C)
+            holder.setTemperature(forecasts[position].celsius, Weather.C)
+        else
+            holder.setTemperature(forecasts[position].fahrenheit, Weather.F)
+
         holder.humidityPercentage = forecasts[position].humidity
         holder.precipitationPercentage = forecasts[position].precipitation
 
@@ -34,12 +39,12 @@ class ForecastAdapter(private var forecasts: ArrayList<Forecast>, private var we
             weather.setLocation(holder.location)
             weather.setWeather(holder.weatherCode)
 
-            if (degreeUnitCode == Weather.C)
+            if (weather.degreeUnitCode == Weather.C)
                 weather.setTemperature(holder.celsius, Weather.C)
             else
                 weather.setTemperature(holder.fahrenheit, Weather.F)
 
-            weather.setUnitDegree(degreeUnitCode)
+            weather.setUnitDegree(weather.degreeUnitCode)
             weather.setHumidityPercentage(holder.humidityPercentage)
             weather.setPrecipitationPercentage(holder.precipitationPercentage)
 
