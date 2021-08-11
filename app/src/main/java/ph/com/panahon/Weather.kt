@@ -20,7 +20,7 @@ open class Weather(view: View) {
     private var ivPrecipitationLogo : ImageView = view.findViewById(R.id.iv_chances_rain)
     private var ivHumidityLogo : ImageView = view.findViewById(R.id.iv_humidity)
 
-    private var tvTemperature : TextView = view.findViewById(R.id.tv_temperature)
+    var tvTemperature : TextView = view.findViewById(R.id.tv_temperature)
     private var tvLocation : TextView = view.findViewById(R.id.tv_location)
     private var tvWeatherDescription : TextView = view.findViewById(R.id.tv_weather_desc)
     private var tvDegree : TextView = view.findViewById(R.id.tv_temp_degree)
@@ -28,12 +28,12 @@ open class Weather(view: View) {
     private var tvTodayTitle : TextView = view.findViewById(R.id.tv_today)
     private var tvPrecipitation : TextView = view.findViewById(R.id.tv_precipitation)
 
-    private var location : String = "Manila"
     private var day : String = "Monday"
 
     private var fahrenheit : Int = 0
     private var celsius : Int = 0
     private var weatherCode : Int = SUNNY
+    var degreeUnitCode: Int = C
 
     companion object {
         const val SUNNY = 1
@@ -110,7 +110,17 @@ open class Weather(view: View) {
      */
     open fun setLocation(location: String) {
         if(validWeatherCode()) {
-            this.location = location
+            tvLocation.text = location
+        }
+    }
+
+    /**
+     * Changes the day in the UI
+     * @param day the day
+     */
+    open fun setDay(day: String) {
+        if(validWeatherCode()) {
+            this.tvTodayTitle.text = day.uppercase(Locale.getDefault())
         }
     }
 
@@ -133,6 +143,7 @@ open class Weather(view: View) {
      */
     open fun setUnitDegree(degreeUnitCode: Int) {
         if(validWeatherCode()) {
+            this.degreeUnitCode = degreeUnitCode
             when (degreeUnitCode) {
                 F -> {
                     tvTemperature.text = fahrenheit.toString()

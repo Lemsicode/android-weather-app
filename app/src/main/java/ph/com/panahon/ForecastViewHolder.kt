@@ -11,16 +11,29 @@ import androidx.recyclerview.widget.RecyclerView
 
 open class ForecastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+
     private var ivWeather: ImageView = itemView.findViewById(R.id.iv_template_weather)
-    var tvDay: TextView = itemView.findViewById(R.id.tv_template_day)
     private var tvTemp: TextView = itemView.findViewById(R.id.tv_template_temp)
     private var tvUnitDegree: TextView = itemView.findViewById(R.id.tv_template_unit_degree)
-    private var bg: LinearLayout = itemView.findViewById(R.id.ll_template)
-    private var celsius: Int = 0
-    private var fahrenheit: Int = 0
-    private var isCelsius: Boolean = true
+    var bg: LinearLayout = itemView.findViewById(R.id.ll_template)
+    var tvDay: TextView = itemView.findViewById(R.id.tv_template_day)
+
+    lateinit var today: String
+    lateinit var location: String
+    var weatherCode: Int = 0
+    var celsius: Int = 0
+    var fahrenheit: Int = 0
+    var degreeUnit: Int = 0
+    var humidityPercentage: Int = 0
+    var precipitationPercentage: Int = 0
+
+    open fun setDay(day: String) {
+        tvDay.text = day
+        this.today = day
+    }
 
     open fun setTemperature(temp: Int, degreeUnitCode: Int) {
+        degreeUnit = degreeUnitCode
         when (degreeUnitCode) {
             Weather.F -> {
                 fahrenheit = temp
@@ -39,8 +52,8 @@ open class ForecastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
         }
     }
 
-    open fun toggleUnitDegree(){
-        if(isCelsius) {
+    open fun setUnitDegree(unitDegreeCode: Int){
+        if(unitDegreeCode == Weather.F) {
             tvTemp.text = fahrenheit.toString()
             tvUnitDegree.text = "°F"
         }
@@ -52,6 +65,7 @@ open class ForecastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
 
     @RequiresApi(Build.VERSION_CODES.M)
     open fun setWeather(weatherCode: Int) {
+        this.weatherCode = weatherCode
         when (weatherCode) {
             Weather.SUNNY -> {
                 ivWeather.setImageResource(R.drawable.ic_sun)
