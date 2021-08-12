@@ -107,7 +107,7 @@ class ForecastFragment : Fragment() {
 
         weather = Weather(view)
         rvForecasts.layoutManager = manager
-        rvForecasts.adapter = ForecastAdapter(forecasts, weather, degreeUnitCode)
+        rvForecasts.adapter = ForecastAdapter(forecasts, weather)
     }
 
     private fun addForecast(day: String, location: String, weatherCode: Int, temperature: Int, unitDegree: Int, humidityPercentage: Int, precipitationPercentage: Int){

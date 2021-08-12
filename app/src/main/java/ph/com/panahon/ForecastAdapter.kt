@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 
-class ForecastAdapter(private var forecasts: ArrayList<Forecast>, private var weather: Weather, private var degreeUnitCode: Int) : RecyclerView.Adapter<ForecastViewHolder>() {
+class ForecastAdapter(private var forecasts: ArrayList<Forecast>, private var weather: Weather) : RecyclerView.Adapter<ForecastViewHolder>() {
 
     private var allHolders: ArrayList<ForecastViewHolder> = ArrayList()
 
@@ -54,8 +54,10 @@ class ForecastAdapter(private var forecasts: ArrayList<Forecast>, private var we
                 weather.setDay(holder.today)
         }
 
-        if (degreeUnitCode == Weather.F)
+        if (weather.degreeUnitCode == Weather.F)
             holder.setUnitDegree(Weather.F)
+        else
+            holder.setUnitDegree(Weather.C)
 
         weather.tvTemperature.setOnClickListener {
             if (weather.degreeUnitCode == Weather.C) {
