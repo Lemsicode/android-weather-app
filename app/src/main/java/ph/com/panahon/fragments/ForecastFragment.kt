@@ -75,7 +75,8 @@ class ForecastFragment : Fragment() {
         // Declare the location
         val location = "Metro Manila"
 
-        // FORMAT: addForecast( day, location, weatherCode, temperature, unitDegree, humidity, precipitation)
+        // FORMAT: addForecast(day, location, weatherCode, temperature, unitDegree, humidity, precipitation)
+        // WeatherCodes (5 Weathers): Weather.SUNNY, Weather.CLOUDY, Weather.SNOWY, Weather.RAINY, Weather.STORMY
 
         // The first element in the ArrayList is the forecast for "Today"
         addForecast("Wednesday", location, Weather.SUNNY, 35, Weather.C, 30, 19)

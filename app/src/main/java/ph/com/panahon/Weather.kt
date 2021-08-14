@@ -28,13 +28,16 @@ open class Weather(view: View) {
     private var tvTodayTitle : TextView = view.findViewById(R.id.tv_today)
     private var tvPrecipitation : TextView = view.findViewById(R.id.tv_precipitation)
 
-    private var day : String = "Monday"
+    private lateinit var day : String
 
-    private var fahrenheit : Int = 0
-    private var celsius : Int = 0
-    private var weatherCode : Int = SUNNY
-    var degreeUnitCode: Int = C
+    private var fahrenheit : Int = 0            // NOTE:
+    private var celsius : Int = 0               // These Integer Values assigned have no
+    private var weatherCode : Int = SUNNY       // significance. Kotlin just wants everything
+    var degreeUnitCode: Int = C                 // initialized.
 
+    /**
+     * These are Kotlin's version of PUBLIC STATIC FINAL of java
+     */
     companion object {
         const val SUNNY = 1
         const val RAINY = 2
@@ -128,7 +131,6 @@ open class Weather(view: View) {
      * Changes the Date in the UI
      * @param localDate a Java Date Object that is provided.
      */
-
     @RequiresApi(Build.VERSION_CODES.O)
     open fun setDate(localDate: LocalDate) {
         if(validWeatherCode()) {

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 open class ForecastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-
     private var ivWeather: ImageView = itemView.findViewById(R.id.iv_template_weather)
     private var tvTemp: TextView = itemView.findViewById(R.id.tv_template_temp)
     private var tvUnitDegree: TextView = itemView.findViewById(R.id.tv_template_unit_degree)
