@@ -1,5 +1,5 @@
 # Panahon
-Panahon is a weather application that utilizes geolocation and third-party API from _OpenWeatherMap.org_. My co-workers for this project are _Aki Escarraga_ and _Cyrl de Guzman_. This project is for the partial completion of the course Mobile Development in De La Salle University.
+Panahon is an android weather application that utilizes geolocation and third-party API from _Weatherbit.io_.
 
 ## Features
 The android application allows the user to do the following:
@@ -10,7 +10,7 @@ The android application allows the user to do the following:
 * Search a certain place for its weather.
 
 ## Running the files in Android Studio
-1. Either download the files through ZIP or Clone this using cmd by typing:<br />`git clone git@github.com:Lemsicode/android-weather-app.git`
+1. Either download the files through ZIP or Clone this using cmd by typing:<br />`git clone git@github.com:Lemsicode/android-panahon.git`
 2. Make sure the file `local.properties` is present and automatically made by Android Studio.
 3. If `local.properties` is missing, rebuild the app inside Android Studio.
 4. Press the Run Button inside the app. 
